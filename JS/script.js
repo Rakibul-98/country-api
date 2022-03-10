@@ -42,6 +42,7 @@ const displayAllCountry = (countries)=>{
     });
 };
 
+// search by name
 const handleNameSearch = () =>{
     const searchValue = document.getElementById("search-box").value;
     fetch(`https://restcountries.com/v3.1/name/${searchValue}
@@ -60,6 +61,58 @@ const searchByName = (countries)=>{
         const continent = country.continents[0];
         const currency = country.currencies.BDT.name;
         const nationality = country.demonyms.eng.f;
+        const flag = country.flags.png;
+        const population = country.population;
+        const region = country.region;
+        const language = country.languages.ben;
+    });
+};
+
+// search by capital
+const handleCapitalSearch = () =>{
+    const searchValue = document.getElementById("search-box").value;
+    fetch(`https://restcountries.com/v2/capital/${searchValue}
+    `)
+    .then(res=>res.json())
+    .then(data=>searchByCapital(data))
+};
+
+const searchByCapital = (countries) =>{
+    countries.forEach(country => {
+        console.log(country);
+        const commonName = country.name.common;
+        const officialName = country.name.official;
+        const capital= country.capital[0];
+        // const symbol = country.coatOfArms.png;
+        // const continent = country.continents[0];
+        // const currency = country.currencies.BDT.name;
+        // const nationality = country.demonyms.eng.f;
+        const flag = country.flags.png;
+        const population = country.population;
+        const region = country.region;
+        const language = country.languages.ben;
+    });
+};
+
+// search by continent
+const handleContinentSearch = () =>{
+    const searchValue = document.getElementById("search-box").value;
+    fetch(`https://restcountries.com/v2/continent/${searchValue}
+    `)
+    .then(res=>res.json())
+    .then(data=>searchByContinent(data))
+};
+
+const searchByContinent = (countries) =>{
+    countries.forEach(country => {
+        console.log(country);
+        const commonName = country.name.common;
+        const officialName = country.name.official;
+        const capital= country.capital[0];
+        // const symbol = country.coatOfArms.png;
+        // const continent = country.continents[0];
+        // const currency = country.currencies.BDT.name;
+        // const nationality = country.demonyms.eng.f;
         const flag = country.flags.png;
         const population = country.population;
         const region = country.region;
