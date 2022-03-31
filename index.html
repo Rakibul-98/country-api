@@ -21,11 +21,11 @@
                 <input id="search-box" type="text" class="form-control" aria-label="Text input with dropdown button">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><button onclick="">Search by Area</button></li>
-                  <li><button onclick="">Search by Currency</button></li>
-                  <li><button onclick="">Search by Organization</button></li>
-                  <li><button onclick="">Search by capital</button></li>
-                  <li><button onclick="">Search by Full name</button></li>
+                    <li><button onclick="handleNameSearch()">Search by Full name</button></li>
+                    <li><button onclick="handleCapitalSearch()">Search by capital</button></li>
+                    <li><button onclick="handleCurrencySearch()">Search by Currency</button></li>
+                    <li><button onclick="handleContinentSearch()">Search by Region</button></li>
+                    <li><button onclick="handleOrganizationSearch()">Search by Organization</button></li>
                 </ul>
             </div>
         </section>
