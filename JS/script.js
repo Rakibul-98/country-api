@@ -145,23 +145,41 @@ const handleCapitalSearch = () =>{
     .then(data=>searchByCapital(data))
 };
 
+// display by capital
 const searchByCapital = (countries) =>{
     const countryDiv = document.getElementById("country-card");
     countryDiv.innerHTML='';
 
+    const detailsDiv = document.getElementById("country-details-card");
+    detailsDiv.innerHTML='';
+
     countries.forEach(country => {
         console.log(country);
-        const commonName = country.name.common;
-        const officialName = country.name.official;
-        const capital= country.capital[0];
-        // const symbol = country.coatOfArms.png;
-        // const continent = country.continents[0];
-        // const currency = country.currencies.BDT.name;
-        // const nationality = country.demonyms.eng.f;
-        const flag = country.flags.png;
-        const population = country.population;
-        const region = country.region;
-        const language = country.languages.ben;
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML=`
+            <div class="card w-50 mx-auto mb-3">
+                <div class="h-75">
+                    <img src="${country.flags.png}" class="card-img-top h-100" alt="...">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">${country.name.common}</h3>
+
+                    <p class="card-text fw-bold">Country in ${country.continents[0]}</p>
+
+                    <p class="card-text"><span class="fw-bold">Capital : </span>${country.capital[0]}</p>
+
+                    <p class="card-text"><span class="fw-bold">Area:</span> ${country.area} km²</p>
+
+                    <p class="card-text"><span class="fw-bold">Population:</span> ${country.population}</p>
+
+                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${country.demonyms.eng.f}</p>
+
+                    <p class="card-text"><span class="fw-bold">Time Zone:</span> ${country.timezones[0]}</p>
+                </div>
+            </div>
+            <button onclick="loadAllCountries()" class="btn btn-dark mb-3">Go Back</button>
+        `;
+        detailsDiv.appendChild(newDiv);
     });
 };
 
