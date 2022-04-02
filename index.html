@@ -18,21 +18,21 @@
     <main class="container">
         <section class="search-sec">
             <div class="input-group mb-3">
-                <input id="search-box" type="text" class="form-control" aria-label="Text input with dropdown button">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+                <input id="search-box" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Type here...">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search options </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><button onclick="handleNameSearch()">Search by Full name</button></li>
-                    <li><button onclick="handleCapitalSearch()">Search by capital</button></li>
-                    <li><button onclick="handleCurrencySearch()">Search by Currency</button></li>
-                    <li><button onclick="handleContinentSearch()">Search by Region</button></li>
-                    <li><button onclick="handleOrganizationSearch()">Search by Organization</button></li>
+                    <li><button class="dropdown-item" onclick="handleNameSearch()">Search by Name</button></li>
+                    <li><button class="dropdown-item" onclick="handleCapitalSearch()">Search by Capital</button></li>
+                    <li><button class="dropdown-item" onclick="handleCurrencySearch()">Search by Currency</button></li>
+                    <li><button class="dropdown-item" onclick="handleContinentSearch()">Search by Region</button></li>
+                    <li><button class="dropdown-item" onclick="handleOrganizationSearch()">Search by Organization</button></li>
                 </ul>
             </div>
         </section>
 
         <section class="spinner-sec">
             <div class="d-flex justify-content-center">
-                <div id="spinner" style="display: none;" class="spinner-border" role="status">
+                <div id="spinner" style="display: none;" class="spinner-border text-info" role="status">
                   <span class="visually-hidden"></span>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             </div>
         </section>
 
-        <button id="back-btn" style="display: none;" onclick="loadAllCountry()" class="btn btn-dark my-4">Go Back</button>
+        <button id="back-btn" style="display: none;" onclick="loadAllCountry()" class="btn btn-dark my-4">←	Go Back</button>
         
     </main>
 

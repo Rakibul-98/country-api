@@ -47,7 +47,7 @@ const displaySingleCountry = (country) => {
                     <p class="card-text"><span class="fw-bold">Time Zone:</span> ${country.timezones[0]}</p>
                 </div>
             </div>
-            <button onclick="loadAllCountry()" class="btn btn-dark mb-3">Go Back</button>
+            <button onclick="loadAllCountry()" class="btn btn-dark mb-3">← Go Back</button>
         `;
         detailsDiv.appendChild(newDiv);
         toggleSpinner("none");
@@ -133,6 +133,7 @@ const displayAllCountry = (countries)=>{
 // load country details
 const loadCountryDetails = (code)=>{
     toggleSpinner("block");
+    removeResults("country-card");
     fetch(`https://restcountries.com/v2/callingcode/${code}
     `)
     .then(res=>res.json())
@@ -166,7 +167,7 @@ const displayCountryDetails = (country) =>{
                     <p class="card-text"><span class="fw-bold">Member of:</span> ${country.regionalBlocs ? country.regionalBlocs[0].name : "No Organization"} ${country.regionalBlocs ? (country.regionalBlocs[0].acronym) : ""}</p>
                 </div>
             </div>
-            <button onclick="loadAllCountry()" class="btn btn-dark mb-3">Go Back</button>
+            <button onclick="loadAllCountry()" class="btn btn-dark mb-3">← Go Back</button>
         `;
     detailsDiv.appendChild(newDiv);
     toggleSpinner("none");
@@ -175,6 +176,8 @@ const displayCountryDetails = (country) =>{
 // search by name
 const handleNameSearch = () =>{
     toggleSpinner("block");
+    removeResults("country-card");
+    removeResults("country-details-card");
     getSearchValue();
 
     fetch(`https://restcountries.com/v3.1/name/${searchValue}
@@ -198,6 +201,8 @@ const displayByFullName = (countries)=>{
 const handleCapitalSearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    removeResults("country-card");
+    removeResults("country-details-card");
 
     fetch(`https://restcountries.com/v3.1/capital/${searchValue}
     `)
@@ -220,6 +225,8 @@ const displayByCapital = (countries) =>{
 const handleCurrencySearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    removeResults("country-card");
+    removeResults("country-details-card");
 
     fetch(`https://restcountries.com/v3.1/currency/${searchValue}
     `)
@@ -242,6 +249,8 @@ const displayByCurrency = (countries) =>{
 const handleContinentSearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    removeResults("country-card");
+    removeResults("country-details-card");
 
     fetch(`https://restcountries.com/v3.1/region/${searchValue}
     `)
@@ -265,6 +274,8 @@ const displayByContinent = (countries) =>{
 const handleOrganizationSearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    removeResults("country-card");
+    removeResults("country-details-card");
 
     fetch(`https://restcountries.com/v2/regionalbloc/${searchValue}
     `)
