@@ -13,7 +13,7 @@ loadAllCountries();
 const displayAllCountry = (countries)=>{
 
     const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+    removeResults("country-card");
 
     document.getElementById("back-btn").style.display="none";
 
@@ -44,6 +44,17 @@ const displayAllCountry = (countries)=>{
     });
 };
 
+// display single country
+const displaySingleCountry = () => {
+
+}
+
+// remove previous search results
+const removeResults = (div)=>{
+    const countryDiv = document.getElementById(div);
+    countryDiv.innerHTML='';
+}
+
 // load country details
 const loadCountryDetails = (numericCode)=>{
     fetch(`https://restcountries.com/v2/callingcode/${numericCode}
@@ -55,12 +66,11 @@ const loadCountryDetails = (numericCode)=>{
 
 // display country details
 const displayCountryDetails = country =>{
-    const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+
+    removeResults("country-card");
 
     const detailsDiv = document.getElementById("country-details-card");
-    detailsDiv.innerHTML='';
-    // console.log(country);
+    removeResults("country-details-card");
 
     const newDiv = document.createElement("div");
         newDiv.innerHTML=`
@@ -101,11 +111,10 @@ const handleNameSearch = () =>{
 
 // display by name
 const searchByFullName = (countries)=>{
-    const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+    removeResults("country-card");
 
     const detailsDiv = document.getElementById("country-details-card");
-    detailsDiv.innerHTML='';
+    removeResults("country-details-card");
 
     countries.forEach(country => {
         // console.log(country);
@@ -152,11 +161,10 @@ const handleCapitalSearch = () =>{
 
 // display by capital
 const searchByCapital = (countries) =>{
-    const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+    removeResults("country-card");
 
     const detailsDiv = document.getElementById("country-details-card");
-    detailsDiv.innerHTML='';
+    removeResults("country-details-card");
 
     countries.forEach(country => {
         // console.log(country);
@@ -202,8 +210,10 @@ const handleCurrencySearch = () =>{
 
 // display result by currency
 const searchByCurrency = (countries) =>{
+    removeResults("country-details-card");
+
     const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+    removeResults("country-card");
 
     document.getElementById("back-btn").style.display="block";
 
@@ -254,8 +264,10 @@ const handleContinentSearch = () =>{
 
 // display by continent
 const searchByContinent = (countries) =>{
+    removeResults("country-details-card");
+
     const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+    removeResults("country-card");
 
     document.getElementById("back-btn").style.display="block";
 
@@ -306,8 +318,10 @@ const handleOrganizationSearch = () =>{
 
 // display by organization
 const searchByOrganization = (countries) =>{
+    removeResults("country-details-card");
+
     const countryDiv = document.getElementById("country-card");
-    countryDiv.innerHTML='';
+    removeResults("country-card");
 
     document.getElementById("back-btn").style.display="block";
 
