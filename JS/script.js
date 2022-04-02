@@ -92,6 +92,7 @@ const displayMultipleCountry = (country) => {
 const loadAllCountry = () =>{
     toggleSpinner("block");
     removeResults("country-details-card");
+    removeResults("country-card");
 
     fetch("https://restcountries.com/v2/all")
     .then(res=>res.json())
