@@ -9,10 +9,26 @@ const toggleBackBtn = (action)=>{
     document.getElementById("back-btn").style.display=action;
 }
 
+// get search value and remove text
+const getSearchValue = ()=>{
+    const searchField = document.getElementById("search-box");
+    searchValue=searchField.value;
+    searchField.value = '';
+}
+
+// display single country
+const displaySingleCountry = () => {
+
+}
+
+// display multiple country
+const displayMultipleCountry = () => {
+
+}
+
 // load all countries
 const loadAllCountries = () =>{
-    const detailsDiv = document.getElementById("country-details-card");
-    detailsDiv.innerHTML='';
+    removeResults("country-details-card");
 
     fetch("https://restcountries.com/v2/all")
     .then(res=>res.json())
@@ -53,14 +69,9 @@ const displayAllCountry = (countries)=>{
     });
 };
 
-// display single country
-const displaySingleCountry = () => {
-
-}
-
 // load country details
-const loadCountryDetails = (numericCode)=>{
-    fetch(`https://restcountries.com/v2/callingcode/${numericCode}
+const loadCountryDetails = (code)=>{
+    fetch(`https://restcountries.com/v2/callingcode/${code}
     `)
     .then(res=>res.json())
     .then(data=>displayCountryDetails(data[0]))
@@ -100,9 +111,7 @@ const displayCountryDetails = country =>{
 
 // search by name
 const handleNameSearch = () =>{
-    const searchField = document.getElementById("search-box");
-    searchValue=searchField.value;
-    searchField.value = '';
+    getSearchValue();
 
     fetch(`https://restcountries.com/v3.1/name/${searchValue}
     `)
@@ -150,9 +159,7 @@ const searchByFullName = (countries)=>{
 
 // search by capital
 const handleCapitalSearch = () =>{
-    const searchField = document.getElementById("search-box");
-    searchValue=searchField.value;
-    searchField.value = '';
+    getSearchValue();
 
     fetch(`https://restcountries.com/v3.1/capital/${searchValue}
     `)
@@ -199,9 +206,7 @@ const searchByCapital = (countries) =>{
 
 // search by currency
 const handleCurrencySearch = () =>{
-    const searchField = document.getElementById("search-box");
-    searchValue=searchField.value;
-    searchField.value = '';
+    getSearchValue();
 
     fetch(`https://restcountries.com/v3.1/currency/${searchValue}
     `)
@@ -250,9 +255,7 @@ const searchByCurrency = (countries) =>{
 
 // search by continent
 const handleContinentSearch = () =>{
-    const searchField = document.getElementById("search-box");
-    searchValue=searchField.value;
-    searchField.value = '';
+    getSearchValue();
 
     fetch(`https://restcountries.com/v3.1/region/${searchValue}
     `)
@@ -302,9 +305,7 @@ const searchByContinent = (countries) =>{
 
 // search by organization
 const handleOrganizationSearch = () =>{
-    const searchField = document.getElementById("search-box");
-    searchValue=searchField.value;
-    searchField.value = '';
+    getSearchValue();
 
     fetch(`https://restcountries.com/v2/regionalbloc/${searchValue}
     `)
