@@ -309,18 +309,37 @@ const searchByOrganization = (countries) =>{
     const countryDiv = document.getElementById("country-card");
     countryDiv.innerHTML='';
 
+    document.getElementById("back-btn").style.display="block";
+
     countries.forEach(country => {
-        console.log(country);
-        const commonName = country.name.common;
-        const officialName = country.name.official;
-        const capital= country.capital[0];
-        // const symbol = country.coatOfArms.png;
-        // const continent = country.continents[0];
-        // const currency = country.currencies.BDT.name;
-        // const nationality = country.demonyms.eng.f;
-        const flag = country.flags.png;
-        const population = country.population;
-        const region = country.region;
-        const language = country.languages.ben;
+        // console.log(country);
+        const newDiv = document.createElement("div");
+        newDiv.classList.add("col-xl-3");
+        newDiv.classList.add("col-md-4");
+        newDiv.classList.add("col-sm-6");
+        newDiv.classList.add("my-3");
+        newDiv.innerHTML=`
+            <div class="card h-100 mb-3">
+                <div class="h-75">
+                    <img src="${country.flags.png}" class="card-img-top h-100" alt="...">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">${country.name.common}</h3>
+
+                    <p class="card-text fw-bold">Country in ${country.region}</p>
+
+                    <p class="card-text"><span class="fw-bold">Capital : </span>${country.capital[0]}</p>
+
+                    <p class="card-text"><span class="fw-bold">Area:</span> ${country.area} km²</p>
+
+                    <p class="card-text"><span class="fw-bold">Population:</span> ${country.population}</p>
+
+                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${country.demonym}</p>
+
+                    <p class="card-text"><span class="fw-bold">Time Zone:</span> ${country.timezones[0]}</p>
+                </div>
+            </div>
+        `;
+        countryDiv.appendChild(newDiv);
     });
 };
