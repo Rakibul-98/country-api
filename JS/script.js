@@ -17,8 +17,34 @@ const getSearchValue = ()=>{
 }
 
 // display single country
-const displaySingleCountry = () => {
+const displaySingleCountry = (country) => {
+    const detailsDiv = document.getElementById("country-details-card");
 
+    const newDiv = document.createElement("div");
+        newDiv.innerHTML=`
+            <div class="card w-75 mx-auto mb-3">
+                <div class="h-75">
+                    <img src="${country.flags.png}" class="card-img-top h-100" alt="...">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">${country.name.common}</h3>
+
+                    <p class="card-text fw-bold">Country in ${country.continents[0]}</p>
+
+                    <p class="card-text"><span class="fw-bold">Capital : </span>${country.capital[0]}</p>
+
+                    <p class="card-text"><span class="fw-bold">Area:</span> ${country.area} km²</p>
+
+                    <p class="card-text"><span class="fw-bold">Population:</span> ${country.population}</p>
+
+                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${country.demonyms.eng.f}</p>
+
+                    <p class="card-text"><span class="fw-bold">Time Zone:</span> ${country.timezones[0]}</p>
+                </div>
+            </div>
+            <button onclick="loadAllCountries()" class="btn btn-dark mb-3">Go Back</button>
+        `;
+        detailsDiv.appendChild(newDiv);
 }
 
 // display multiple country
@@ -150,39 +176,12 @@ const handleNameSearch = () =>{
 
 // display by name
 const searchByFullName = (countries)=>{
-    const detailsDiv = document.getElementById("country-details-card");
     removeResults("country-card");
     removeResults("country-details-card");
     toggleBackBtn("none");
 
     countries.forEach(country => {
-        // console.log(country);
-
-        const newDiv = document.createElement("div");
-        newDiv.innerHTML=`
-            <div class="card w-75 mx-auto mb-3">
-                <div class="h-75">
-                    <img src="${country.flags.png}" class="card-img-top h-100" alt="...">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">${country.name.common}</h3>
-
-                    <p class="card-text fw-bold">Country in ${country.continents[0]}</p>
-
-                    <p class="card-text"><span class="fw-bold">Capital : </span>${country.capital[0]}</p>
-
-                    <p class="card-text"><span class="fw-bold">Area:</span> ${country.area} km²</p>
-
-                    <p class="card-text"><span class="fw-bold">Population:</span> ${country.population}</p>
-
-                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${country.demonyms.eng.f}</p>
-
-                    <p class="card-text"><span class="fw-bold">Time Zone:</span> ${country.timezones[0]}</p>
-                </div>
-            </div>
-            <button onclick="loadAllCountries()" class="btn btn-dark mb-3">Go Back</button>
-        `;
-        detailsDiv.appendChild(newDiv);
+        displaySingleCountry(country);
     });
 };
 
@@ -198,38 +197,12 @@ const handleCapitalSearch = () =>{
 
 // display by capital
 const searchByCapital = (countries) =>{
-    const detailsDiv = document.getElementById("country-details-card");
     removeResults("country-card");
     removeResults("country-details-card");
     toggleBackBtn("none");
 
     countries.forEach(country => {
-        // console.log(country);
-        const newDiv = document.createElement("div");
-        newDiv.innerHTML=`
-            <div class="card w-75 mx-auto mb-3">
-                <div class="h-75">
-                    <img src="${country.flags.png}" class="card-img-top h-100" alt="...">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">${country.name.common}</h3>
-
-                    <p class="card-text fw-bold">Country in ${country.continents[0]}</p>
-
-                    <p class="card-text"><span class="fw-bold">Capital : </span>${country.capital[0]}</p>
-
-                    <p class="card-text"><span class="fw-bold">Area:</span> ${country.area} km²</p>
-
-                    <p class="card-text"><span class="fw-bold">Population:</span> ${country.population}</p>
-
-                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${country.demonyms.eng.f}</p>
-
-                    <p class="card-text"><span class="fw-bold">Time Zone:</span> ${country.timezones[0]}</p>
-                </div>
-            </div>
-            <button onclick="loadAllCountries()" class="btn btn-dark mb-3">Go Back</button>
-        `;
-        detailsDiv.appendChild(newDiv);
+        displaySingleCountry(country);
     });
 };
 
