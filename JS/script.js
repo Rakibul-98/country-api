@@ -98,9 +98,6 @@ const displayAllCountry = (countries)=>{
     toggleBackBtn("none");
 
     countries.forEach(country => {
-        const nationality = country.demonym;
-        const language = country.languages[0].name;
-
         const newDiv = document.createElement("div");
         newDiv.classList.add("col-xl-3");
         newDiv.classList.add("col-md-4");
@@ -114,8 +111,8 @@ const displayAllCountry = (countries)=>{
                 <div class="card-body">
                     <h3 class="card-title">${country.name}</h3>
                     <p class="card-text"><span class="fw-bold">Capital:</span> ${country.capital}</p>
-                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${nationality}</p>
-                    <p class="card-text"><span class="fw-bold">Language:</span> ${language}</p>
+                    <p class="card-text"><span class="fw-bold">Nationality:</span> ${country.demonym}</p>
+                    <p class="card-text"><span class="fw-bold">Language:</span> ${country.languages[0].name}</p>
                     <button onclick="loadCountryDetails(${country.callingCodes[0]})" type="button" class="btn btn-primary">See more info</button>
                 </div>
             </div>
@@ -134,7 +131,7 @@ const loadCountryDetails = (code)=>{
 }
 
 // display country details
-const displayCountryDetails = country =>{
+const displayCountryDetails = (country) =>{
     const detailsDiv = document.getElementById("country-details-card");
     removeResults("country-card");
     removeResults("country-details-card");
