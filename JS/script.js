@@ -1,3 +1,14 @@
+// remove previous search results
+const removeResults = (div)=>{
+    const countryDiv = document.getElementById(div);
+    countryDiv.innerHTML='';
+}
+
+// back button hide
+const toggleBackBtn = (action)=>{
+    document.getElementById("back-btn").style.display=action;
+}
+
 // load all countries
 const loadAllCountries = () =>{
     const detailsDiv = document.getElementById("country-details-card");
@@ -11,11 +22,9 @@ loadAllCountries();
 
 // Displaying all countries
 const displayAllCountry = (countries)=>{
-
     const countryDiv = document.getElementById("country-card");
     removeResults("country-card");
-
-    document.getElementById("back-btn").style.display="none";
+    toggleBackBtn("none");
 
     countries.forEach(country => {
         const nationality = country.demonym;
@@ -49,12 +58,6 @@ const displaySingleCountry = () => {
 
 }
 
-// remove previous search results
-const removeResults = (div)=>{
-    const countryDiv = document.getElementById(div);
-    countryDiv.innerHTML='';
-}
-
 // load country details
 const loadCountryDetails = (numericCode)=>{
     fetch(`https://restcountries.com/v2/callingcode/${numericCode}
@@ -66,10 +69,8 @@ const loadCountryDetails = (numericCode)=>{
 
 // display country details
 const displayCountryDetails = country =>{
-
-    removeResults("country-card");
-
     const detailsDiv = document.getElementById("country-details-card");
+    removeResults("country-card");
     removeResults("country-details-card");
 
     const newDiv = document.createElement("div");
@@ -111,10 +112,10 @@ const handleNameSearch = () =>{
 
 // display by name
 const searchByFullName = (countries)=>{
-    removeResults("country-card");
-
     const detailsDiv = document.getElementById("country-details-card");
+    removeResults("country-card");
     removeResults("country-details-card");
+    toggleBackBtn("none");
 
     countries.forEach(country => {
         // console.log(country);
@@ -161,10 +162,10 @@ const handleCapitalSearch = () =>{
 
 // display by capital
 const searchByCapital = (countries) =>{
-    removeResults("country-card");
-
     const detailsDiv = document.getElementById("country-details-card");
+    removeResults("country-card");
     removeResults("country-details-card");
+    toggleBackBtn("none");
 
     countries.forEach(country => {
         // console.log(country);
@@ -210,15 +211,12 @@ const handleCurrencySearch = () =>{
 
 // display result by currency
 const searchByCurrency = (countries) =>{
-    removeResults("country-details-card");
-
     const countryDiv = document.getElementById("country-card");
+    removeResults("country-details-card");
     removeResults("country-card");
-
-    document.getElementById("back-btn").style.display="block";
+    toggleBackBtn("block");
 
     countries.forEach(country => {
-        // console.log(country);
         const newDiv = document.createElement("div");
         newDiv.classList.add("col-xl-3");
         newDiv.classList.add("col-md-4");
@@ -264,12 +262,10 @@ const handleContinentSearch = () =>{
 
 // display by continent
 const searchByContinent = (countries) =>{
-    removeResults("country-details-card");
-
     const countryDiv = document.getElementById("country-card");
+    removeResults("country-details-card");
     removeResults("country-card");
-
-    document.getElementById("back-btn").style.display="block";
+    toggleBackBtn("block");
 
     countries.forEach(country => {
         // console.log(country);
@@ -318,15 +314,14 @@ const handleOrganizationSearch = () =>{
 
 // display by organization
 const searchByOrganization = (countries) =>{
+
     removeResults("country-details-card");
+    removeResults("country-card");
+    toggleBackBtn("block");
 
     const countryDiv = document.getElementById("country-card");
-    removeResults("country-card");
-
-    document.getElementById("back-btn").style.display="block";
-
+    
     countries.forEach(country => {
-        // console.log(country);
         const newDiv = document.createElement("div");
         newDiv.classList.add("col-xl-3");
         newDiv.classList.add("col-md-4");
