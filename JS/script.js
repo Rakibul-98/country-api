@@ -1,14 +1,18 @@
 // error handling
 const handleError = (type) =>{
     const errorP = document.getElementById("error-message");
+    toggleBackBtn("block");
+    toggleErrorMessage("block");
+    toggleSpinner("none");
     if (type == 404) {
-        toggleErrorMessage("block");
-        toggleSpinner("none");
-        errorP.innerText=`Something went wrong!!! 
-        Please try again later...`;
+        errorP.innerText=`Something went wrong!!!
+        Please try again...
+        `;
     }
-    else{
-        console.log("unknown error");
+    else if (type == "empty") {
+        errorP.innerText=`Search field can not be empty!!
+        Please enter right search value...
+        `;
     }
 }
 
@@ -198,17 +202,27 @@ const displayCountryDetails = (country) =>{
 
 // search by name
 const handleNameSearch = () =>{
+    toggleBackBtn("none");
     toggleErrorMessage("none");
     toggleSpinner("block");
     removeResults("country-card");
     removeResults("country-details-card");
     getSearchValue();
+    const value = searchValue;
+    if (value == '') {
+        handleError("empty");
+    }
+    else{
+        fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
+        .then(res=>res.json())
+        .then(data=>displayByFullName(data))
+        .catch(error=>handleError(404))
+    }
 
-    fetch(`https://restcountries.com/v3.1/name/${searchValue}
-    `)
-    .then(res=>res.json())
-    .then(data=>displayByFullName(data))
-    .catch(error=>handleError(404))
+    // fetch(`https://restcountries.com/v3.1/name/${searchValue}`)
+    // .then(res=>res.json())
+    // .then(data=>displayByFullName(data))
+    // .catch(error=>handleError(404))
 };
 
 // display by name
@@ -225,16 +239,21 @@ const displayByFullName = (countries)=>{
 // search by capital
 const handleCapitalSearch = () =>{
     getSearchValue();
+    toggleBackBtn("none");
     toggleErrorMessage("none");
     toggleSpinner("block");
     removeResults("country-card");
     removeResults("country-details-card");
-
-    fetch(`https://restcountries.com/v3.1/capital/${searchValue}
-    `)
-    .then(res=>res.json())
-    .then(data=>displayByCapital(data))
-    .catch(error=>handleError(404))
+    const value = searchValue;
+    if (value == '') {
+        handleError("empty");
+    }
+    else{
+        fetch(`https://restcountries.com/v3.1/capital/${searchValue}`)
+        .then(res=>res.json())
+        .then(data=>displayByCapital(data))
+        .catch(error=>handleError(404))
+    }
 };
 
 // display by capital
@@ -251,16 +270,21 @@ const displayByCapital = (countries) =>{
 // search by currency
 const handleCurrencySearch = () =>{
     getSearchValue();
+    toggleBackBtn("none");
     toggleSpinner("block");
     toggleErrorMessage("none");
     removeResults("country-card");
     removeResults("country-details-card");
-
-    fetch(`https://restcountries.com/v3.1/currency/${searchValue}
-    `)
-    .then(res=>res.json())
-    .then(data=>displayByCurrency(data))
-    .catch(error=>handleError(404))
+    const value = searchValue;
+    if (value == '') {
+        handleError("empty");
+    }
+    else{
+        fetch(`https://restcountries.com/v3.1/currency/${searchValue}`)
+        .then(res=>res.json())
+        .then(data=>displayByCurrency(data))
+        .catch(error=>handleError(404))
+    }
 };
 
 // display result by currency
@@ -277,16 +301,21 @@ const displayByCurrency = (countries) =>{
 // search by continent
 const handleContinentSearch = () =>{
     getSearchValue();
+    toggleBackBtn("none");
     toggleSpinner("block");
     toggleErrorMessage("none");
     removeResults("country-card");
     removeResults("country-details-card");
-
-    fetch(`https://restcountries.com/v3.1/region/${searchValue}
-    `)
-    .then(res=>res.json())
-    .then(data=>displayByContinent(data))
-    .catch(error=>handleError(404))
+    const value = searchValue;
+    if (value == '') {
+        handleError("empty");
+    }
+    else{
+        fetch(`https://restcountries.com/v3.1/region/${searchValue}`)
+        .then(res=>res.json())
+        .then(data=>displayByContinent(data))
+        .catch(error=>handleError(404))
+    }
 };
 
 // display by continent
@@ -304,16 +333,21 @@ const displayByContinent = (countries) =>{
 // search by organization
 const handleOrganizationSearch = () =>{
     getSearchValue();
+    toggleBackBtn("none");
     toggleSpinner("block");
     toggleErrorMessage("none");
     removeResults("country-card");
     removeResults("country-details-card");
-
-    fetch(`https://restcountries.com/v2/regionalbloc/${searchValue}
-    `)
-    .then(res=>res.json())
-    .then(data=>displayByOrganization(data))
-    .catch(error=>handleError(404))
+    const value = searchValue;
+    if (value == '') {
+        handleError("empty");
+    }
+    else{
+        fetch(`https://restcountries.com/v2/regionalbloc/${searchValue}`)
+        .then(res=>res.json())
+        .then(data=>displayByOrganization(data))
+        .catch(error=>handleError(404))
+    }
 };
 
 // display by organization
