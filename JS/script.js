@@ -1,3 +1,22 @@
+// error handling
+const handleError = (type) =>{
+    const errorP = document.getElementById("error-message");
+    if (type == 404) {
+        toggleErrorMessage("block");
+        toggleSpinner("none");
+        errorP.innerText=`Something went wrong!!! 
+        Please try again later...`;
+    }
+    else{
+        console.log("unknown error");
+    }
+}
+
+// error message toggle
+const toggleErrorMessage = (optn) =>{
+    document.getElementById("error-message").style.display=optn;
+}
+
 // loading spinner
 const toggleSpinner = (optn) =>{
     document.getElementById("spinner").style.display=optn;
@@ -27,9 +46,9 @@ const displaySingleCountry = (country) => {
 
     const newDiv = document.createElement("div");
         newDiv.innerHTML=`
-            <div class="card w-75 mx-auto mb-3">
-                <div class="h-75">
-                    <img src="${country.flags.png}" class="card-img-top h-100" alt="...">
+            <div class="card w-50 mx-auto mb-3">
+                <div>
+                    <img src="${country.flags.png}" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">${country.name.common}</h3>
@@ -91,12 +110,15 @@ const displayMultipleCountry = (country) => {
 // load all countries
 const loadAllCountry = () =>{
     toggleSpinner("block");
+    toggleErrorMessage("none");
+    toggleBackBtn("none");
     removeResults("country-details-card");
     removeResults("country-card");
 
     fetch("https://restcountries.com/v2/all")
     .then(res=>res.json())
     .then(data=>displayAllCountry(data))
+    .catch(error=>handleError(404))
 };
 loadAllCountry();
 
@@ -139,7 +161,7 @@ const loadCountryDetails = (code)=>{
     `)
     .then(res=>res.json())
     .then(data=>displayCountryDetails(data[0]))
-    ;
+    .catch(error=>handleError(404))
 }
 
 // display country details
@@ -150,9 +172,9 @@ const displayCountryDetails = (country) =>{
 
     const newDiv = document.createElement("div");
         newDiv.innerHTML=`
-            <div class="card w-75 mx-auto my-5">
-                <div class="h-50">
-                    <img src="${country.flag}" class="card-img-top h-50" alt="...">
+            <div class="card w-50 mx-auto my-5">
+                <div>
+                    <img src="${country.flag}" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
                     <h3 class="card-title">${country.name}</h3>
@@ -176,6 +198,7 @@ const displayCountryDetails = (country) =>{
 
 // search by name
 const handleNameSearch = () =>{
+    toggleErrorMessage("none");
     toggleSpinner("block");
     removeResults("country-card");
     removeResults("country-details-card");
@@ -185,6 +208,7 @@ const handleNameSearch = () =>{
     `)
     .then(res=>res.json())
     .then(data=>displayByFullName(data))
+    .catch(error=>handleError(404))
 };
 
 // display by name
@@ -201,6 +225,7 @@ const displayByFullName = (countries)=>{
 // search by capital
 const handleCapitalSearch = () =>{
     getSearchValue();
+    toggleErrorMessage("none");
     toggleSpinner("block");
     removeResults("country-card");
     removeResults("country-details-card");
@@ -209,6 +234,7 @@ const handleCapitalSearch = () =>{
     `)
     .then(res=>res.json())
     .then(data=>displayByCapital(data))
+    .catch(error=>handleError(404))
 };
 
 // display by capital
@@ -226,6 +252,7 @@ const displayByCapital = (countries) =>{
 const handleCurrencySearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    toggleErrorMessage("none");
     removeResults("country-card");
     removeResults("country-details-card");
 
@@ -233,6 +260,7 @@ const handleCurrencySearch = () =>{
     `)
     .then(res=>res.json())
     .then(data=>displayByCurrency(data))
+    .catch(error=>handleError(404))
 };
 
 // display result by currency
@@ -250,6 +278,7 @@ const displayByCurrency = (countries) =>{
 const handleContinentSearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    toggleErrorMessage("none");
     removeResults("country-card");
     removeResults("country-details-card");
 
@@ -257,6 +286,7 @@ const handleContinentSearch = () =>{
     `)
     .then(res=>res.json())
     .then(data=>displayByContinent(data))
+    .catch(error=>handleError(404))
 };
 
 // display by continent
@@ -275,6 +305,7 @@ const displayByContinent = (countries) =>{
 const handleOrganizationSearch = () =>{
     getSearchValue();
     toggleSpinner("block");
+    toggleErrorMessage("none");
     removeResults("country-card");
     removeResults("country-details-card");
 
@@ -282,6 +313,7 @@ const handleOrganizationSearch = () =>{
     `)
     .then(res=>res.json())
     .then(data=>displayByOrganization(data))
+    .catch(error=>handleError(404))
 };
 
 // display by organization
