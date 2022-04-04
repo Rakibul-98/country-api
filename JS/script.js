@@ -1,17 +1,19 @@
 // error handling
 const handleError = (type) =>{
-    const errorP = document.getElementById("error-message");
+    const errorDiv = document.getElementById("error-message");
     toggleBackBtn("block");
     toggleErrorMessage("block");
     toggleSpinner("none");
     if (type == 404) {
-        errorP.innerText=`Something went wrong!!!
-        Please try again...
+        errorDiv.innerHTML=`
+        <img class="img-fluid" src="images/error-img.png" alt="">
+        <p class="h1"><span class="text-danger">Something went wrong!!!</span> <br> Please try again...</p>
         `;
     }
     else if (type == "empty") {
-        errorP.innerText=`Search field can not be empty!!
-        Please enter right search value...
+        errorDiv.innerHTML=`
+        <img class="img-fluid" src="images/error-img.png" alt="">
+        <p class="h1"><span class="text-danger">Search field can not be empty!!!</span> <br> Please enter right search value...</p>
         `;
     }
 }
